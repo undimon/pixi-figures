@@ -1,0 +1,28 @@
+{
+	"name": "pixi-typescript",
+	"version": "1.0.0",
+	"description": "This is an architype project for initializing the pixi renderer, driven by transpiled typescript. It's also minimalistic, thereby not including servers and the like.",
+	"scripts": {
+		"start": "npx parcel index.html",
+		"test": "npx jest --coverage"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@gitlab.com:Gneu/poc/pixi-typescript.git"
+	},
+	"author": "Bob Chatman",
+	"license": "MIT",
+	"dependencies": {
+		"@tweenjs/tween.js": "^17.4.0",
+		"@types/pixi.js": "^4.8.7",
+		"@types/tween.js": "^17.2.0",
+		"eventemitter3": "^3.1.2",
+		"http-server": "^0.11.1",
+		"jest": "^24.8.0",
+		"parcel": "^1.12.3",
+		"pixi-viewport": "^3.23.2",
+		"pixi.js": "^5.0.3",
+		"tslint": "^5.17.0",
+		"typescript": "^3.9.5"
+	}
+}
