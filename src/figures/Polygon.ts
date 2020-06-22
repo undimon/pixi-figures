@@ -3,9 +3,7 @@ import { randomNumber } from '../helpers'
 
 export class Polygon extends Figure {
 
-	constructor(x: number, y: number, color: number) {
-		super()
-
+	public draw(): void {
 		const vertices = []
 		const center = [0,0]
 		const radius = 10
@@ -19,13 +17,9 @@ export class Polygon extends Figure {
 		}
 		const path = vertices.reduce((acc, val) => acc.concat(val), [])
 
-		this.beginFill(color)
-		this.drawPolygon(path)
-		this.endFill()
-		
+		this.drawPolygon(path)		
 		this.area = this.calculateArea(vertices)
-		this.x = x
-		this.y = y    
+		this.name = this.name + numPoints.toString()
 	}
 
 	public calculateArea(vertices: number[][]): number {

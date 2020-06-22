@@ -3,9 +3,7 @@ import { randomNumber } from '../helpers'
 
 export class Bezier extends Figure {
 
-	constructor(x: number, y: number, color: number) {
-		super();
-
+	public draw(): void {
 		let vertices = []
 		const center = [0,0];
 		const baseRadius = 10;
@@ -18,8 +16,7 @@ export class Bezier extends Figure {
 			const y = Math.floor(radius * Math.sin(2*Math.PI*i/numPoints + theta) + center[1])
 			vertices.push([x, y])
 		}
-
-		this.beginFill(color)		
+	
 		this.moveTo(vertices[0][0], vertices[0][1])
 		
 		for (let i = 0; i < vertices.length; i = i + 2) {
@@ -31,14 +28,11 @@ export class Bezier extends Figure {
 				vertices[end][0], vertices[end][1], 
 			)
 		}	
-			
-		this.endFill()
-
+	
 		this.area = this.calculateArea(vertices)
-		this.x = x
-		this.y = y    
+		this.name = this.name + numPoints.toString()
 	}
-
+	
 	public calculateArea(vertices: number[][]) {
 		let area = 0
 		for (let i = 0; i < vertices.length; i++) {

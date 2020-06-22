@@ -2,6 +2,7 @@ import View from './View'
 import Model from './Model'
 import { Application } from 'pixi.js'
 import { Figure } from '../figures'
+import { randomColor } from '../helpers'
  
 class Scene {
     private model: Model
@@ -46,14 +47,23 @@ class Scene {
        
     private addRandomFigure(x?: number, y?: number): void {     
         const figureModel = this.model.getRandomFigureType()
-        const figure = this.view.addFigure(figureModel, this.removeFigure, x, y)
+        const figure = this.view.addFigure(figureModel, this.figureClickHandler, x, y)
         this.model.addFigure(figure)
     }
 
-    // Called from figure when it's clicked
     private removeFigure = (figure: Figure): void => {
         this.model.removeFigure(figure)
         this.view.removeFigure(figure)
+    }
+
+    // Called from figure when it's clicked
+    private figureClickHandler = (figure: Figure): void => {
+        this.removeFigure(figure)
+        
+        // Find all figures with the same type and change their color
+        this.model.items.forEach(item => {
+            if (item.getType() === figure.getType()) item.update(null, randomColor())
+        })  
     }
 
     // Generate new N figures each second

@@ -42,12 +42,12 @@ class View {
         return figure.y > this.height + 50
     }
 
-    public addFigure(figureModel: Constructor<Figure>, removeHandler: Function, x?:number, y?:number): Figure {
+    public addFigure(figureModel: Constructor<Figure>, clickHandler: Function, x?:number, y?:number): Figure {
         if (!x) x = randomNumber(0, this.width)
         if (!y) y = randomNumber(-40, -200)
         
         const figure = new figureModel(x, y, randomColor())
-        figure.bindClick(() => removeHandler(figure))
+        figure.bindClick(() => clickHandler(figure))
         
         this.container.addChild(figure)
         return figure
