@@ -1,15 +1,16 @@
-import { Figure, Polygon, Circle, Ellipse, Bezier } from '../figures'
+import { FigureType, Figure, Polygon, Circle, Ellipse, Bezier } from '../figures'
 import { randomNumber } from '../helpers'
+import { Constructor } from '../interfaces'
 
 class Model {
-    public items: any[] = []
+    public items: Figure[] = []
     public gravity: number = 2
     public step: number = 1
     public itemsPerSec: number = 5
-    public figureTypes: any[] = [Circle, Ellipse, Polygon, Bezier]
+    public figureTypes: Array<FigureType> = [Circle, Ellipse, Polygon, Bezier]
     public figuresOccupiedArea: number = 0
     
-    public getRandomFigureType(): new(...args: any) => Figure {
+    public getRandomFigureType(): Constructor<Figure> {
         return this.figureTypes[randomNumber(0, this.figureTypes.length)]
     }
 

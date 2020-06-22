@@ -1,7 +1,7 @@
 import { Application, Graphics, Container } from "pixi.js"
-import { addEventListenerToElement, setHtmlElementValue } from '../helpers'
+import { addEventListenerToElement, setHtmlElementValue, randomColor, randomNumber } from '../helpers'
 import { Figure } from '../figures'
-import { randomColor, randomNumber } from '../helpers'
+import { Constructor } from '../interfaces'
 
 class View {
     private container: Container
@@ -42,7 +42,7 @@ class View {
         return figure.y > this.height + 50
     }
 
-    public addFigure(figureModel: new(...args: any) => Figure, removeHandler: Function, x?:number, y?:number): Figure {
+    public addFigure(figureModel: Constructor<Figure>, removeHandler: Function, x?:number, y?:number): Figure {
         if (!x) x = randomNumber(0, this.width)
         if (!y) y = randomNumber(-40, -200)
         
@@ -57,23 +57,23 @@ class View {
         this.container.removeChild(figure)
     }
         
-    public bindSceneClick(handler: Function): void {
-        this.container.on('pointerdown', (e: any) => handler(e))
+    public bindSceneClick(handler: (e: PIXI.interaction.InteractionEvent) => void): void {
+        this.container.on('pointerdown', handler)
     }
 
-    public bindIncreaseGravity(handler: Function): void {
+    public bindIncreaseGravity(handler: (e: Event) => void): void {
         addEventListenerToElement('increaseGravityBtn', 'click', handler)
     }
      
-    public bindDecreaseGravity(handler: Function): void {
+    public bindDecreaseGravity(handler: (e: Event) => void): void {
         addEventListenerToElement('decreaseGravityBtn', 'click', handler)
     }
 
-    public bindIncreaseItemsPerSec(handler: Function): void {
+    public bindIncreaseItemsPerSec(handler: (e: Event) => void): void {
         addEventListenerToElement('increaseNumberOfShapesBtn', 'click', handler)
     }
      
-    public bindDecreaseItemsPerSec(handler: Function): void {
+    public bindDecreaseItemsPerSec(handler: (e: Event) => void): void {
         addEventListenerToElement('decreaseNumberOfShapesBtn', 'click', handler)
     }
 

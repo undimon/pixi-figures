@@ -16,13 +16,15 @@ class Scene {
         this.view.bindDecreaseGravity(this.handleDecreaseGravity)
         this.view.bindDecreaseItemsPerSec(this.handleDecreaseItemsPerSec)
         this.view.bindIncreaseItemsPerSec(this.handleIncreaseItemsPerSec)
-        this.view.bindSceneClick(this.handleSceneClick.bind(this))
+        this.view.bindSceneClick(this.handleSceneClick)
 
         // Start figures generation
         this.initFigureGenerationInterval()
     }
     
-    private handleSceneClick = (e: any): void => {
+    private handleSceneClick = (e: PIXI.interaction.InteractionEvent): void => {
+        //console.log(e.x);
+        
         this.addRandomFigure(e.data.global.x, e.data.global.y)
     }
 

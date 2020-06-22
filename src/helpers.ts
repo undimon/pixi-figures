@@ -14,7 +14,7 @@ export function setHtmlElementValue(element: HTMLElement | null, value: string):
     if (element) element.innerHTML = value
 }
 
-export function addEventListenerToElement(id: string, event: string, handler: any): void {
+export function addEventListenerToElement(id: string, event: string, handler: (e: Event) => void): void {
     const element =  document.getElementById(id)
     if (element) element.addEventListener(event, handler)
 }
