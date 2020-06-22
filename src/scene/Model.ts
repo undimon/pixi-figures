@@ -30,6 +30,7 @@ class Model {
 
     public decreaseGravity(): void {
         this.gravity -= this.step
+        if (this.gravity < 0) this.gravity = 0
     }
 
     public increaseItemsPerSec(): void {
